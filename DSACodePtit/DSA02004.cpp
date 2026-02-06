@@ -73,9 +73,7 @@ vector<int> dy = {1 , 0 , -1 , 0};
 vector<char> dirLabels = {'R' , 'D' , 'L' , 'U'};
 
 void backTrack(int x , int y , string s){
-    visited[x][y] = true;
     if(x == n-1 && y == n-1){
-        visited[x][y] = false;
         res.push_back(s);
         return;
     }
@@ -86,10 +84,10 @@ void backTrack(int x , int y , string s){
             if(a[nx][ny] == 1 && !visited[nx][ny]){
                 visited[nx][ny] = true;
                 backTrack(nx , ny , s + dirLabels[i]);
+                visited[nx][ny] = false;
             }
         }
     }
-    visited[x][y] = false;
 }
 
 void testCase(){
@@ -101,8 +99,9 @@ void testCase(){
             cin >> a[i][j];
         }
     }
+    visited[0][0] = true;
     backTrack(0 , 0 , "");
-    if(res.empty() || a[0][0] == 0){
+    if(res.empty() || a[0][0] == 0 || a[n-1][n-1] == 0){
         cout << "-1" << endl;
         return;
     }
