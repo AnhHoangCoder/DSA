@@ -1,0 +1,50 @@
+// Số nhị phân được xem là cách mặc định biểu diễn các số. Tuy nhiên, trong nhiều ứng dụng của điện tử và truyền thông lại dùng một biến thể của mã nhị phân đó là mã Gray. Mã Gray độ dài n có mã đầu tiên là n số 0, mã kế tiếp của nó là một xâu nhị phân độ dài n khác biệt với xâu trước đó một bít. Ví dụ với n=3 ta có 23 mã Gray như sau: 000, 001, 011, 010, 110, 111, 101, 100. Hãy viết chương trình chuyển đổi một xâu mã nhị phân X có độ dài n thành một xâu mã Gray.
+
+// Input:
+
+// Dòng đầu tiên là số lượng test T.
+// T dòng kế tiếp ghi lại mỗi dòng một test. Mỗi test là một xâu nhị phân độ dài n.
+// T, n thỏa mãn ràng buộc: 1≤T, n≤10.
+// Output:
+
+// Đưa ra kết quả mỗi test theo từng dòng.
+// Input:
+
+// 2
+
+// 01001
+
+// 01101
+
+// Output:
+
+// 01101
+
+// 01011
+
+#include <iostream>
+
+using namespace std;
+
+string binaryToGray(string &g){
+    string b = g;
+    for(int i=1;i<g.size();i++){
+        b[i] = (g[i-1] - '0') ^ (g[i] - '0') + '0';
+    }
+    return b;
+}
+
+void testCase(){
+    string s;
+    cin >> s;
+    cout << binaryToGray(s) << endl;
+}
+
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        testCase();
+    }
+    return 0;
+}
