@@ -23,44 +23,37 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
-int n;
-vector<char> a , tmp;
-vector<vector<char>> res;
+void Try(string &s , string cur , int idx , vector<string> &res){
+    for(int i=idx;i<s.length();i++){
+        //cứ mỗi lần thêm cur thì ta lấy luôn
+        cur.push_back(s[i]);
+        res.push_back(cur);
 
-void Try(int idx , int start){
-    if(!tmp.empty()){
-        res.push_back(tmp);
-    }
-    if(idx == n) return;
-    for(int i=start;i<n;i++){
-        tmp.push_back(a[i]);
-        Try(idx+1 , i+1);
-        tmp.pop_back();
+        Try(s , cur , i + 1 , res);
+        //nhánh cận để hoàn lại cho cur
+        cur.pop_back();
     }
 }
 
 void testCase(){
+    int n;
     string s;
-    cin >> n >> s;
-    a.clear();
-    a.resize(n);
-    tmp.clear();
-    res.clear();
-    for(int i=0;i<n;i++){
-        a[i] = s[i];
-    }
-    Try(0 , 0);
+    if(!(cin >> n >> s)) return;
+    //sắp xếp lại để có thể in theo thứ tự từ điển
+    sort(s.begin() , s.end());
+
+    vector<string> res;
+    Try(s , "" , 0 , res);
     sort(res.begin() , res.end());
-    for(auto &x : res){
-        for(int i=0;i<x.size();i++){
-            cout << x[i];
-        }
-        cout << " ";
+
+    for(int i=0;i<res.size();i++){
+        cout<< res[i] << (i == res.size() - 1 ? "" : " ");
     }
-    cout << endl;
+    cout << "\n";
 }
 
 int main(){
