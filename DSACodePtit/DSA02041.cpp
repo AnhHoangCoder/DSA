@@ -33,6 +33,7 @@ using namespace std;
 int cnt;
 
 void Try(int n , int dem){
+    //Nếu số bước đã tệ hơn kết quả tốt nhất thì bỏ qua
     if(dem >= cnt) return;
     if(n == 1){
         cnt = min(cnt , dem);
