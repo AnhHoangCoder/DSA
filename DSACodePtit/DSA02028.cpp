@@ -37,7 +37,6 @@ using namespace std;
 int n,k,s;
 vector<int> a;
 int cnt;
-bool isOk;
 
 void Try(int idx , int groupFound , int sum){
     if(idx == n){
@@ -75,7 +74,6 @@ void testCase(){
     }
     cnt = 0;
     s /= k;
-    isOk = false;
     Try(0 , 0 , 0);
     cout << cnt << endl;
 }
