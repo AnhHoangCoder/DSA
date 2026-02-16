@@ -30,24 +30,26 @@ using namespace std;
 
 int x;
 
-bool cmp(int a, int b){
-    int num1 = abs(x - a);
-    int num2 = abs(x - b);
-
-    if(num1 < num2) return true;
-    return false;
+bool cmp(pair<int , int> a, pair<int , int> b){
+    if(abs(x - a.first) != abs(x - b.first)){
+        return abs(x - a.first) < abs(x - b.first);
+    }
+    return a.second < b.second;
 }
 
 void testCase(){
     int n;
     cin >> n >> x;
-    vector<int> a(n);
+    vector<pair<int , int>> a(n);
     for(int i=0;i<n;i++){
-        cin >> a[i];
+        int x;
+        cin >> x;
+        a[i].first = x;
+        a[i].second = i;
     }
     sort(a.begin() , a.end() , cmp);    
     for(int i=0;i<n;i++){
-        cout << a[i];
+        cout << a[i].first;
         if(i < n-1){
             cout << " ";
         }
