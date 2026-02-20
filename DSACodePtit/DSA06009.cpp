@@ -26,99 +26,79 @@
 #include <vector>
 
 using namespace std;
+using ll = long long;
 
-// Quick sort
-void quickSort(vector<int> &a , int l , int r){
+void QuickSort(vector<int> &a , int l , int r){
     if(l >= r) return;
-
-    int pivot = a[(l+r)/2];
     int i = l , j = r;
-
+    int pivot = a[(l+r)/2];
+    
     while(i <= j){
         while(a[i] < pivot) i++;
         while(a[j] > pivot) j--;
-
         if(i <= j){
             swap(a[i] , a[j]);
             i++;
             j--;
         }
     }
-
-    quickSort(a , l , j);
-    quickSort(a , i , r);
+    QuickSort(a , l , j);
+    QuickSort(a , i , r);
 }
 
 void testCase(){
-
     int n,k;
     cin >> n >> k;
-
     vector<int> a(n);
-
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n;i++){
         cin >> a[i];
+    }
+    QuickSort(a , 0 , n-1);
 
-    quickSort(a , 0 , n-1);
-
-    long long cnt = 0;
-
-    int l = 0;
-    int r = n-1;
-
+    ll cnt = 0;
+    int l = 0 , r = n-1;
     while(l < r){
-
         int sum = a[l] + a[r];
 
         if(sum == k){
-
-            // Case 1: tất cả phần tử giữa l và r giống nhau
+            // Case 1 :Tất cả phần từ giữa l và r giống nhau
             if(a[l] == a[r]){
-                long long len = r - l + 1;
+                ll len = r - l + 1;
                 cnt += len * (len - 1) / 2;
                 break;
             }
-
-            // Case 2: phần tử khác nhau, đếm số lượng trùng
-            long long leftCount = 1;
-            long long rightCount = 1;
-
-            while(l+1 < r && a[l] == a[l+1]){
-                leftCount++;
+            ll left = 1 , right = 1;
+            while(l < r-1 && a[l] == a[l+1]){
+                left++;
                 l++;
             }
-
-            while(r-1 > l && a[r] == a[r-1]){
-                rightCount++;
+            while(r > l+1 && a[r] == a[r-1]){
+                right++;
                 r--;
             }
-
-            cnt += leftCount * rightCount;
+            cnt += left * right;
 
             l++;
             r--;
         }
-
-        else if(sum < k)
+        else if(sum < k){
             l++;
-
-        else
+        }
+        else{
             r--;
+        }
     }
-
-    cout << cnt << "\n";
+    cout << cnt << endl;
 }
 
 int main(){
-
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
     int t;
     cin >> t;
-
-    while(t--)
+    while(t--){
         testCase();
-
+    }
     return 0;
 }
