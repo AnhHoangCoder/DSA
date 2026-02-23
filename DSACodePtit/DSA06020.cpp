@@ -25,6 +25,7 @@
 
 using namespace std;
 
+// O(log(n))
 bool binarySearch(int a[] , int n , int x){
     int left = 0 , right = n-1;
 
