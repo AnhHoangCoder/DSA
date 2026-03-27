@@ -25,7 +25,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <climits>
 
 using namespace std;
 using ll = long long;
@@ -39,7 +38,7 @@ void testCase(){
     }
     sort(a.begin() , a.end());
 
-    ll res = INT_MIN;
+    ll res = -1e18;
 
     //2 số lớn nhất
     res = max(res , a[n-1] * a[n-2]);
