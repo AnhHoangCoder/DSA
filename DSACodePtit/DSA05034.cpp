@@ -47,7 +47,7 @@ void testCase(){
     for(int i=1;i<=n;i++){
         dp[i] = sum % mod;
         sum = (sum + dp[i]) % mod;
-        //Tránh số bước bị trùng thì ta phải trừ đi từ 1 -> i-k
+        //Loại bỏ phần tử xa nhất kể từ i
         if(i >= k){
             sum = (sum - dp[i-k] + mod) % mod;
         }
