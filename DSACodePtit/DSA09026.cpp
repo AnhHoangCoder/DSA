@@ -8,7 +8,7 @@
 // Output:
 
 // Đưa ra đường đi từ đỉnh s đến đỉnh t của mỗi test theo thuật toán BFS của mỗi test theo khuôn dạng của ví dụ dưới đây. Nếu không có đáp án, in ra -1.
-//       Ví dụ:
+//      Ví dụ:
 
 // Input:
 
@@ -96,7 +96,7 @@ void testCase(){
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    
+
     int t;
     cin >> t;
     while(t--){
