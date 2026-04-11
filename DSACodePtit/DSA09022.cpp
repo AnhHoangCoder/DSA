@@ -8,7 +8,7 @@
 // Output:
 
 // Đưa ra danh sách các đỉnh được duyệt theo thuật toán DFS(u) của mỗi test theo khuôn dạng của ví dụ dưới đây.
-//      Ví dụ:
+//Ví dụ:
 
 // Input:
 
