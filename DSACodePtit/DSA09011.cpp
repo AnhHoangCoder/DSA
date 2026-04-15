@@ -38,6 +38,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -48,15 +49,35 @@ vector<int> di = {0 , 0 , -1 , -1 , -1 , 1 , 1 , 1};
 vector<int> dj = {-1 , 1 , -1 , 1 , 0 , -1 , 1 , 0};
 int n , m;
 
-void dfs(int i , int j){
+// void dfs(int i , int j){
+//     used[i][j] = true;
+
+//     for(int u=0;u<8;u++){
+//         int ni = i + di[u];
+//         int nj = j + dj[u];
+
+//         if(ni >= 0 && ni < n && nj >= 0 && nj < m && !used[ni][nj] && a[ni][nj] == 1){
+//             dfs(ni , nj);
+//         }
+//     }
+// }
+
+void bfs(int i , int j){
+    queue<pair<int,int>> q;
+    q.push({i , j});
     used[i][j] = true;
 
-    for(int u=0;u<8;u++){
-        int ni = i + di[u];
-        int nj = j + dj[u];
+    while(!q.empty()){
+        auto t = q.front();
+        q.pop();
 
-        if(ni >= 0 && ni < n && nj >= 0 && nj < m && !used[ni][nj] && a[ni][nj] == 1){
-            dfs(ni , nj);
+        for(int k=0;k<8;k++){
+            int u = t.first + di[k];
+            int v = t.second + dj[k];
+            if(u >= 0 && u < n && v >= 0 && v < m && a[u][v] == 1 && !used[u][v]){
+                q.push({u , v});
+                used[u][v] = true;
+            }
         }
     }
 }
@@ -78,7 +99,8 @@ void testCase(){
         for(int j=0;j<m;j++){
             if(a[i][j] == 1 && !used[i][j]){
                 cnt++;
-                dfs(i , j);
+                // dfs(i , j);
+                bfs(i , j);
             }
         }
     }
