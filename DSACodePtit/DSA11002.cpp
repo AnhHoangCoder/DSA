@@ -64,6 +64,13 @@ int solve(Node* node){
     return left / right;
 }
 
+void freeTree(Node* root){
+    if(root == nullptr) return;
+    freeTree(root->left);
+    freeTree(root->right);
+    delete root;
+}
+
 void testCase(){
     int n;
     cin >> n;
@@ -74,6 +81,7 @@ void testCase(){
     
     Node* root = buildTree(a , 0 , n);
     cout << solve(root) << endl;
+    freeTree(root);
 }
 
 int main(){
