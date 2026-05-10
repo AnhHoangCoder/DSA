@@ -97,6 +97,13 @@ void levelOrder(Node* root){
     }
 }
 
+void freeTree(Node* root){
+	if(root == nullptr) return;
+	freeTree(root->left);
+	freeTree(root->right);
+	delete root;
+}
+
 int main(){
     int t;
     cin >> t;
