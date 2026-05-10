@@ -80,6 +80,14 @@ Node* build(int inL , int inR , int preL , int preR){
 
     return root;
 }
+
+void freeTree(Node* root){
+    if(root == nullptr) return;
+    freeTree(root->left);
+    freeTree(root->right);
+    delete root;
+}
+
 void testCase(){
     int n;
     cin >> n;
@@ -98,6 +106,7 @@ void testCase(){
 
     Node* root = build(0 , n-1 , 0 , n-1);
     postorder(root);
+    freeTree(root);
     cout << endl;
 }
 
