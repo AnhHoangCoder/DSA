@@ -51,6 +51,14 @@ bool check(Node* node , int level){
     return check(node->left , level + 1) && check(node->right , level + 1); 
 }
 
+void freeTree(Node* node){
+    if(node == nullptr) return;
+
+    freeTree(node->left);
+    freeTree(node->right);
+    delete node;
+}
+
 void testCase(){
     int n;
     cin >> n;
@@ -86,6 +94,7 @@ void testCase(){
 
     leafLevel = -1;
     cout << (check(root , 0) ? 1 : 0) << endl;
+    freeTree(root);
 }
 
 int main(){
