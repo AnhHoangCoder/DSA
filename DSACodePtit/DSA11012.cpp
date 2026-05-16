@@ -95,6 +95,12 @@ bool check(Node* root1 , Node* root2){
         && check(root1->right , root2->right);
 }
 
+void freeTree(Node* root){
+    if(root == nullptr) return;
+    freeTree(root->left);
+    freeTree(root->right);
+    delete root;
+}
 
 void testCase(){
     Node* root1 = nullptr;
@@ -103,6 +109,8 @@ void testCase(){
     nhap(root2);
     
     cout << (check(root1 , root2) ? 1 : 0) << endl;
+    freeTree(root1);
+    freeTree(root2);
 }
 
 int main(){
