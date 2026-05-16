@@ -1,0 +1,77 @@
+// Cho dãy số nguyên A[] gồm có N phần tử. Nhiệm vụ của bạn là tìm dãy số B[] có tổng phần tử nhỏ nhất thỏa mãn tính chất A[i] / B[i] = A[i+1] / B[i+1] với mọi chỉ số i (0 ≤ i ≤ N-2).
+
+// Phép chia trong bài toán này là phép chia nguyên (tức là chỉ lấy phần nguyên của kết quả: ví dụ 5/3 = 1).   
+
+// Dữ liệu vào:
+
+// Dòng đầu tiên là số lượng phần tử N (1 ≤ N ≤ 1000).
+
+// Dòng tiếp theo gồm N số nguyên A[i] (1 ≤ A[i] ≤ 2000).
+
+// Kết quả: 
+
+// In ra một số nguyên là tổng các phần tử của dãy số B[] tìm được.
+
+// Ví dụ:
+
+// Input:
+
+// Output:
+
+// 5
+
+// 18 27 16 22 6
+
+// 25
+
+// Giải thích test: Dãy B[] tìm được là 5, 7, 5, 6, 2.
+
+#include <iostream>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+const int Max = 2000;
+
+void testCase(){
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for(int i = 0 ; i < n ; i++){
+        cin >> a[i];
+    }
+    
+    int ans = INT_MAX;
+    for(int k = 0 ; k <= Max ; k++){
+        int sum = 0;
+        bool ok = true;
+        for(int i = 0 ; i < n ; i++){
+            int b = (a[i] / (k + 1)) + 1;
+
+            if(a[i] / b != k){
+                ok = false;
+                break;
+            }
+
+            sum += b;
+        }
+
+        if(ok){
+            ans = min(ans , sum);
+        }
+    }
+
+    cout << ans << endl;
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t = 1;
+    while(t--){
+        testCase();
+    }
+    return 0;
+}
