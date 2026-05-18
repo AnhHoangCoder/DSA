@@ -26,6 +26,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -35,14 +36,6 @@ struct Node{
     Node* right;
     Node(int v) : val(v) , left(nullptr) , right(nullptr){}
 };
-
-void addLeft(Node* root , int v){
-    root->left = new Node(v);
-}
-
-void addRight(Node* root , int v){
-    root->right = new Node(v);
-}
 
 void store(Node* root , vector<int> &a){
     if(root == nullptr) return;
@@ -85,24 +78,28 @@ void testCase(){
     cin >> n;
     Node* root = nullptr;
     vector<int> a;
+    unordered_map<int,Node*> mp;
 
     cin >> par >> child >> c;
     root = new Node(par);
-    
     if(c == 'L'){
-        addLeft(root , child);
+        root->left = new Node(child);
+        mp[child] = root->left;
     }
     else{
-        addRight(root , child);
+        root->right = new Node(child);
+        mp[child] = root->right;
     }
-
+    mp[par] = root;
     while(--n){
         cin >> par >> child >> c;
         if(c == 'L'){
-            addLeft(root , child);
+            mp[par]->left = new Node(child);
+            mp[child] = mp[par]->left;
         }
         else{
-            addRight(root , child);
+            mp[par]->right = new Node(child);
+            mp[child] = mp[par]->right;
         }
     }
 
