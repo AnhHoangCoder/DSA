@@ -32,9 +32,9 @@ void testCase(){
     int n = (int)s.size();
     vector<vector<int>> dp(n, vector<int> (n));
 
-    for(int len = 1; len < n; len++){
-        for(int i = 0; i + len < n; i++){
-            int j = i + len;
+    for(int len = 2; len <= n; len++){
+        for(int i = 0; i + len - 1 < n; i++){
+            int j = i + len - 1;
             if(s[i] == s[j]){
                 dp[i][j] = dp[i + 1][j - 1];
             }
@@ -43,7 +43,7 @@ void testCase(){
             }
         }
     }
-    cout << dp[0][n-1] << endl;
+    cout << dp[0][n - 1] << endl;
 }
 
 int main(){
