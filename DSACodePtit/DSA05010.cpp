@@ -30,12 +30,13 @@ void testCase(){
         cin >> a[i];
     }
     const int INF = 1e9 + 7;
+    //Số phần tử nhiều nhất có trong số dư thứ 0->k-1
     vector<int> dp(k , -INF);
 
     dp[0] = 0;
     for(int x : a){
         vector<int> ndp = dp;
-        for(int r = 0; r < k; r++){
+        for(int r = 0; r < k; r++){ //check các mod của k
             if(dp[r] != -INF){
                 int nr = (r + x) % k;
                 ndp[nr] = max(ndp[nr] , dp[r] + 1);
@@ -43,6 +44,7 @@ void testCase(){
         }
         dp = ndp;
     }
+    //chỉ in ra dư 0
     cout << dp[0] << endl;
 }
 
