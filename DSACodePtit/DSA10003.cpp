@@ -8,7 +8,7 @@
 // Output:
 
 // Đưa ra YES hoặc “NO” kết quả test theo từng dòng tương ứng với đồ thị tồn tại hoặc không tồn tại chu trình.
-//       Ví dụ:
+//Ví dụ:
 
 // Input:
 
